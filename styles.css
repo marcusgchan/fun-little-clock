@@ -1,0 +1,96 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-clr: #27272a;
+  --frame-clr: #312e81;
+  --border-clr: #8b5cf6;
+  --primary-hand-clr: #60a5fa;
+  --secendary-hand-clr: #6ee7b7;
+  --knob-clr: #fff;
+
+  --clock-radius: 200px;
+  --clock-border-width: 20px;
+  --knob-radius: 15px;
+  --hour-hand-width: 10px;
+  --hour-hand-height: calc(0.5 * var(--clock-radius));
+  --minute-hand-width: 10px;
+  --minute-hand-height: var(--clock-radius);
+  --second-hand-width: 5px;
+  --second-hand-height: var(--clock-radius);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-clr);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  position: relative;
+  border-radius: 50%;
+  width: calc(2 * var(--clock-radius));
+  height: calc(2 * var(--clock-radius));
+  background-color: var(--frame-clr);
+  box-shadow: 0 0 0 var(--clock-border-width) var(--border-clr);
+}
+
+.clock::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: var(--knob-radius);
+  height: var(--knob-radius);
+  background-color: var(--knob-clr);
+  z-index: 100;
+}
+
+.hour,
+.minute,
+.second {
+  transform-origin: bottom;
+  transition: transform 200ms ease-in;
+}
+
+.hour {
+  position: absolute;
+  top: calc(50% - var(--hour-hand-height));
+  left: calc(50% - 0.5 * var(--hour-hand-width));
+  width: var(--hour-hand-width);
+  height: var(--hour-hand-height);
+  background-color: var(--primary-hand-clr);
+}
+
+.minute {
+  position: absolute;
+  left: calc(50% - 0.5 * var(--minute-hand-width));
+  width: var(--minute-hand-width);
+  height: var(--minute-hand-height);
+  background-color: var(--primary-hand-clr);
+}
+
+.second {
+  position: absolute;
+  top: calc(50% - var(--second-hand-height));
+  left: calc(50% - 0.5 * var(--second-hand-width));
+  background-color: var(--secendary-hand-clr);
+  width: var(--second-hand-width);
+  height: var(--second-hand-height);
+}
